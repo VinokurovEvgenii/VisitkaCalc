@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Messange{% endblock %}
+
+{% block content %}
+    <style>
+        .features h3 {
+            font-family: 'Arial', sans-serif; /* Шрифт для элементов списка */
+            font-size: 1.6em; /* Размер шрифта */
+            color: #FFFFFF; /* Цвет текста */
+            font-weight: 600;
+            margin-top: 200px;
+        }
+        .features h4 {
+            font-family: 'Courier New', monospace; /* Шрифт для элементов списка */
+            font-size: 1.2em; /* Размер шрифта */
+            color: #FFFFFF; /* Цвет текста */
+            margin-top: 350px;
+        }
+        .features a {
+            margin-top: -600px; /* Отступ сверху для кнопок */
+        }
+    </style>
+    <div class="features">
+        <div class="wave">
+            <span style="--i:1">с</span>
+            <span style="--i:2">в</span>
+            <span style="--i:3">я</span>
+            <span style="--i:4">з</span>
+            <span style="--i:5">ь</span>
+            <span>&nbsp</span>
+            <span style="--i:6">c</span>
+            <span style="--i:7">о</span>
+            <span>&nbsp</span>
+            <span style="--i:8">м</span>
+            <span style="--i:9">н</span>
+            <span style="--i:10">о</span>
+            <span style="--i:11">й</span>
+        </div>
+        <h3> Phone number:&nbsp +7 920 346 0000 <br> WatsApp:&nbsp +7 920 346 0000 <br> Mail:&nbsp hetokat7@gmail.com <br> Telegram:&nbsp @SclausVIEW </h3>
+        {% for el in value %}
+                    <h4>{{ el }}</h4>
+        {% endfor %}
+        <a href="https://vk.com/id573261697" class="btn btn-success" role="button">Страница VK</a>
+        <a href="https://github.com/VinokurovEvgenii" class="btn btn-success" role="button">GitHub</a>
+        <a href="https://ivanovo.hh.ru/applicant/resumes?hhtmFrom=main&hhtmFromLabel=header" class="btn btn-success" role="button">HHru</a>
+    </div>
+{% endblock %}

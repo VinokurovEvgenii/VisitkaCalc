@@ -1,0 +1,106 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Calc
+{% endblock %}
+
+{% block content %}
+<div class="calc">
+    <h1>Калькулятор ППС</h1>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="F2">Цена нити №1:</label>
+                    <input type="text" name="F2" id="F2" value="{{ F2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="E2">Вес нити №1 (кг):</label>
+                    <input type="text" name="E2" id="E2" value="{{ E2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="F3">Цена нити №2:</label>
+                    <input type="text" name="F3" id="F3" value="{{ F3 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="E3">Вес нити №2 (кг):</label>
+                    <input type="text" name="E3" id="E3" value="{{ E3 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="F4">Цена нити №3:</label>
+                    <input type="text" name="F4" id="F4" value="{{ F4 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="E4">Вес нити №3 (кг):</label>
+                    <input type="text" name="E4" id="E4" value="{{ E4 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="F5">Цена нити №4:</label>
+                    <input type="text" name="F5" id="F5" value="{{ F5 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="E5">Вес нити №4 (кг):</label>
+                    <input type="text" name="E5" id="E5" value="{{ E5 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="A2">Расценка ПТИ:</label>
+                    <input type="text" name="A2" id="A2" value="{{ A2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="B2">Расцен упаковка:</label>
+                    <input type="text" name="B2" id="B2" value="{{ B2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="C2">Вспом. работы:</label>
+                    <input type="text" name="C2" id="C2" value="{{ C2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+                <div class="form-group">
+                    <label for="D2">Коэф. накл. расход:</label>
+                    <input type="text" name="D2" id="D2" value="{{ D2 }}" oninput="this.value = this.value.replace(/,/g, '.');" onclick="this.value=''; this.focus();">
+                </div>
+            </div>
+            <input class="btn btn-success" type="submit" value="Вывод">
+        </form>
+    </div>
+
+    {% if result %}
+        <h2>Результат: {{ result|floatformat:2 }}</h2>
+    {% endif %}
+
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% endif %}
+
+    {% if result or error %}
+    <div class="result-box">
+        <h3>Введенные значения:</h3>
+        <ul>
+            <li>Цена нити №1: <strong>{{ F2 }}</strong></li>
+            <li>Вес нити №1 (кг): <strong>{{ E2 }}</strong></li>
+            <li>Цена нити №2: <strong>{{ F3 }}</strong></li>
+            <li>Вес нити №2 (кг): <strong>{{ E3 }}</strong></li>
+            <li>Цена нити №3: <strong>{{ F4 }}</strong></li>
+            <li>Вес нити №3 (кг): <strong>{{ E4 }}</strong></li>
+            <li>Цена нити №4: <strong>{{ F5 }}</strong></li>
+            <li>Вес нити №4 (кг): <strong>{{ E5 }}</strong></li>
+            <li>Расценка ПТИ: <strong>{{ A2 }}</strong></li>
+            <li>Расцен упаковка: <strong>{{ B2 }}</strong></li>
+            <li>Вспом. работы: <strong>{{ C2 }}</strong></li>
+            <li>Коэф. накл. расход: <strong>{{ D2 }}</strong></li>
+        </ul>
+        <h3>Итоговый результат: <strong>{{ result|floatformat:2 }}</strong></h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

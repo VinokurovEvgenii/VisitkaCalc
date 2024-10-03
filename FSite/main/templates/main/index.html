@@ -1,0 +1,88 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Characteristics{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .features h1 {
+            font-family: 'Verdana', sans-serif;
+            font-size: 2.5em;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        .features p,
+        .features ul li {
+            font-family: 'Verdana', sans-serif;
+            font-size: 1.4em;
+            color: #FFFFFF;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 2s ease, transform 1.5s ease;
+        }
+        .features p.visible,
+        .features ul li.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .features ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features ul li {
+            font-size: 1.2em;
+        }
+        .features h2 {
+            font-family: 'Verdana', sans-serif;
+            font-size: 1.0em;
+            color: #FFFFFF;
+        }
+    </style>
+
+    <div class="features">
+        <h1 class="fade-in">Немного о себе</h1>
+        <p class="fade-in">Здравствуйте! Меня зовут Евгений Винокуров. Эту страницу я создал как визитку, как для своего развития и желания изучать IT, так и для дополнения к резюме</p>
+        <p class="fade-in">На данный момент нахожусь на должности ведущего технолога ткацкой продукции в достаточно крупной мебельной компании ORMATEK. В этой компании я сменил 5 должностей, начиная от самой низкой - разнорабочего персонала. Такой карьерный рост дал мне понять, что в жизни необходимо развиваться и подстраиваться под разные жизненные ситуации</p>
+        <p class="fade-in">Ниже приведу список мест, где я работал и учился:</p>
+        <ul>
+            <li class="fade-in">2014г. закончил ИГХТУ, факультет неорганической химии и технологии</li>
+            <li class="fade-in">2013г. практика в СПБ, ООО МетаХим (аппаратчик дозирования)</li>
+            <li class="fade-in">2014г. пробовал себя на заводе ИвХимПром (оператор хим. производства)</li>
+            <li class="fade-in">2014г. ОАО МТС (инженер сетей, техник)</li>
+            <li class="fade-in">2015г. ЕНДС-Иваново (техник-электрик)</li>
+            <li class="fade-in">2015г. ГК Орматек (разнорабочий)</li>
+            <li class="fade-in">2015-2018гг. ГК Орматек (комплектовщик)</li>
+            <li class="fade-in">2018-2019гг. ГК Орматек (старший оператор)</li>
+            <li class="fade-in">2019-2021гг. ГК Орматек (технолог)</li>
+            <li class="fade-in">2021г.-н.в. ГК Орматек (вед.технолог)</li>
+        </ul>
+        <p class="fade-in">PS. Есть навыки владения CorelDrow, 1C. Знание английского языка на уровне Entermediate</p>
+        <img src="{% static 'main/img/me.jpg' %}" alt="Мое фото" class="img-fluid">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            function checkPosition() {
+                const windowHeight = window.innerHeight;
+                fadeElements.forEach(el => {
+                    const positionFromTop = el.getBoundingClientRect().top;
+
+                    if (positionFromTop <= windowHeight - 50 && positionFromTop >= -50) {
+                        el.classList.add('visible');
+                    } else {
+                        el.classList.remove('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkPosition);
+            checkPosition();
+        });
+    </script>
+{% endblock %}

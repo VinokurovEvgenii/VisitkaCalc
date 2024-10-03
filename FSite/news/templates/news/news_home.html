@@ -1,0 +1,57 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+    <style>
+        #animated-text {
+            font-size: 24px; /* Здесь можно изменить размер текста */
+            color: #fffff; /* Цвет текста */
+            font-weight: bold; /* Толщина шрифта */
+            transition: transform 0.5s; /* Пример анимации для текстовых изменений */
+        }
+    </style>
+    <div class="features">
+        <h1>Колонка записок</h1>
+        <p id="animated-text"></p> <!-- Параграф с id для анимации текста -->
+
+        <script>
+            const text = "Страница для ведения записей. Можно записывать новые открытия, делать пометки, использовать как ежедневник.";
+            let index = 0;
+            const displayTextInterval = 3000; // Интервал для повторения анимации в миллисекундах
+            const typingSpeed = 50; // Скорость печати
+
+            function typeText() {
+                if (index < text.length) {
+                    document.getElementById('animated-text').innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeText, typingSpeed); // Установите паузу между символами
+                } else {
+                    // После завершения анимации ждем 7 секунд и затем сбрасываем текст
+                    setTimeout(resetText, displayTextInterval);
+                }
+            }
+
+            function resetText() {
+                index = 0; // Сбрасываем индекс
+                document.getElementById('animated-text').innerHTML = ''; // Очищаем текст
+                typeText(); // Запускаем анимацию заново
+            }
+
+            typeText(); // Запускаем анимацию при загрузке страницы
+        </script>
+
+        {% if news %}
+            {% for el in news %}
+                <div class='alert alert-warning'>
+                    <h3>{{ el.title }}</h3>
+                    <p3>{{ el.anons }}</p3>
+                    <a href="{% url 'news-detail' el.id %}" class="btn btn-warning"> Читать детальнее </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p> У Вас нет записей! </p>
+        {% endif %}
+    </div>
+{% endblock %}
+
